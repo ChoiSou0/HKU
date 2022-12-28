@@ -2671,7 +2671,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7b4d8c3e3cbcc41b8f24d8ce1dabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearList: []
+  ClearList:
+  - ClearTile: {fileID: 828445185}
+    ClearRotation: 0
+  - ClearTile: {fileID: 1402979914}
+    ClearRotation: -180
+  - ClearTile: {fileID: 615294746}
+    ClearRotation: 0
+  - ClearTile: {fileID: 477357369}
+    ClearRotation: 0
+  MaxComplete: 4
+  Complete: 0
 --- !u!4 &2144421113
 Transform:
   m_ObjectHideFlags: 0
