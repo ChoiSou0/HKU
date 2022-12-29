@@ -4,16 +4,40 @@ using UnityEngine;
 
 public class Teacher_CS : MonoBehaviour
 {
-    public bool RandTime_Set;  // 랜덤 시간 설정
-    public float min_Time; // 랜덤 최소 시간
-    public float max_Time; // 랜덤 최대 시간
+    public enum Setting
+    {
+        None,
+        Rotate_Cast,
+        Rotate_Warning
+    };
 
+    // ===========< 선생님 회전 및 탐지 >=========
+    public float min_Time;      // 랜덤 최소 시간
+    public float max_Time;      // 랜덤 최대 시간
 
-    public bool Active_Time;    // 시간 보이기
     public float Trun_Time;   // 돌아보는 간격
     public float See_Time;    // 보고있는 시간
-        
-    bool On_Cast = true;
+
+    // =============< 회전 경고 관리 >============
+    public int Warning_Times;   // 경고 반복 횟수
+    public float Warning_sec;   // 경고 보이는 시간
+
+
+    // 내부
+    public Setting setting;
+
+    GameObject Warning_Obj;
+    bool IsRight = true;    // 참일 때 오른쪽
+    bool On_Cast = false;   // 참일 때 레이 발사
+
+    private void Awake()
+    {
+        Warning_Obj = GameObject.Find("Warning");
+        Warning_Obj.SetActive(false);
+
+        //StartCoroutine(Trun_Warning());
+    }
+
     void Start()
     {
         // 바라보는 시간 조정
@@ -22,8 +46,9 @@ public class Teacher_CS : MonoBehaviour
 
     void Update()
     {
-        Cast();
-        if (On_Cast) StartCoroutine(Trun_Teacher());
+        if (On_Cast) Cast(); // 회전 상태일 때만 레이 쏘기
+
+        if (IsRight) StartCoroutine(Trun_Teacher());
     }
 
     void Cast()
@@ -34,16 +59,27 @@ public class Teacher_CS : MonoBehaviour
         // 충돌한 물체가 학생일 때 실행
         if (hit.collider != null) hit.collider.gameObject.GetComponent<Robbing_Student_CS>().Caught_Check();
     }
-
+    
     IEnumerator Trun_Teacher()
     {
-        On_Cast = false;
+        bool Active = true;
+        IsRight = false;
+
         yield return new WaitForSeconds(Trun_Time);
+
+        // 정해진 횟수만큼 경고 반복
+        for (int i = 0; i < Warning_Times * 2; i++, Active = !Active)
+        {
+            Warning_Obj.SetActive(Active);
+            yield return new WaitForSeconds(Warning_sec);
+        }
 
         // 선생님 회전 <-0
         transform.localEulerAngles = new Vector2(0, 180);
+        On_Cast = true;
 
-        yield return new WaitForSeconds(See_Time);
+        // 경고 깜빡이는 시간 보정이 들어간 것임
+        yield return new WaitForSeconds(See_Time + Warning_sec * (Warning_Times * 2));
 
         // 선생님 회전 0->
         transform.localEulerAngles = new Vector2(0, 0);
@@ -51,7 +87,8 @@ public class Teacher_CS : MonoBehaviour
         // 바라보는 시간 조정
         Trun_Time = Random.Range(min_Time, max_Time);
 
-        On_Cast = true;
+        IsRight = true;
+        On_Cast = false;
         yield return null;
-    }
+    }   // 회전 경고 + 회전
 }
