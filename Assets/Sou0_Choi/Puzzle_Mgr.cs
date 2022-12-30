@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using ClearCheck;
 
 public class Puzzle_Mgr : MonoBehaviour
 {
@@ -21,9 +22,6 @@ public class Puzzle_Mgr : MonoBehaviour
     {
         MoveNowTile();
         TurnTile();
-        Debug.Log(NowTiles.gameObject.transform.eulerAngles.z % 90 == 0);
-        Debug.Log(NowTiles.gameObject.transform.eulerAngles.z % 90);
-        Debug.Log(NowTiles.gameObject.transform.eulerAngles.z);
     }
 
     private void MoveNowTile()
@@ -68,6 +66,8 @@ public class Puzzle_Mgr : MonoBehaviour
         {
             NowTiles.gameObject.transform.DORotateQuaternion(Quaternion.Euler(0, 0, NowTiles.gameObject.transform.eulerAngles.z + 90), 1);
         }
+
+        ClearChecking.ClearChecked();
     }
 
     private void ChangeNowTile(int Horizontal, int Vertical)

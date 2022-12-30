@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ClearCheck;
 
 [System.Serializable]
 public class Clear
@@ -11,38 +12,47 @@ public class Clear
 
 public class StageClear : MonoBehaviour
 {
-    [SerializeField] private List<Clear> ClearList = new List<Clear>();
-    [SerializeField] private int MaxComplete;
-    [SerializeField] private int Complete;
+    public List<Clear> ClearList = new List<Clear>();
+    public int MaxComplete;
+    public int Complete;
 
-    // Start is called before the first frame update
+    // Start is called bfore the first frame update
     void Start()
     {
         
+        ClearChecking.ClearChecked();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        Clear();
+        if (Complete == MaxComplete)
+            Debug.Log("Å¬¸®¾î");
     }
 
-    protected void Clear()
+}
+
+namespace ClearCheck
+{
+    public class ClearChecking : MonoBehaviour
     {
-        for (int i = 0; i < ClearList.Count; i++)
+        private static StageClear Clear_Mgr;
+        
+        public static void ClearChecked()
         {
-            if (ClearList[i].ClearTile.gameObject.transform.rotation.z == ClearList[i].ClearRotation)
+            for (int i = 0; i < Clear_Mgr.ClearList.Count; i++)
             {
-                Complete++;
-            }
-            else
-            {
-                if (Complete > 0)
-                    Complete--;
+                if (Clear_Mgr.ClearList[i].ClearTile.gameObject.transform.rotation.z
+                    == Clear_Mgr.ClearList[i].ClearRotation)
+                    Clear_Mgr.Complete++;
+                else
+                {
+                    if (Clear_Mgr.Complete != 0)
+                        Clear_Mgr.Complete--;
+                }
             }
         }
 
-        if (Complete == MaxComplete)
-            Debug.Log("Clear");
     }
+
 }
