@@ -5,6 +5,9 @@ using DG.Tweening;
 
 public class Puzzle_Mgr : MonoBehaviour
 {
+    private StageClear stageClear;
+    [SerializeField] private float MaxTime;
+    [SerializeField] private float Time;
     public List<Tile> EntireTiles = new List<Tile>();
     public Tile NowTiles;
     [SerializeField] private int HorziontalMax;
@@ -13,17 +16,18 @@ public class Puzzle_Mgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        stageClear = GameObject.FindObjectOfType<StageClear>();
+        stageClear.Clear();
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveNowTile();
-        TurnTile();
-        Debug.Log(NowTiles.gameObject.transform.eulerAngles.z % 90 == 0);
-        Debug.Log(NowTiles.gameObject.transform.eulerAngles.z % 90);
-        Debug.Log(NowTiles.gameObject.transform.eulerAngles.z);
+        if (Input.GetKeyDown(KeyCode.Space) &&
+            (NowTiles.gameObject.transform.eulerAngles.z % 90 == 0 ||
+            NowTiles.gameObject.transform.eulerAngles.z % 90 <= 1.1))
+            StartCoroutine(TurnTile());
     }
 
     private void MoveNowTile()
@@ -60,14 +64,13 @@ public class Puzzle_Mgr : MonoBehaviour
 
     }
 
-    private void TurnTile()
+    IEnumerator TurnTile()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && 
-            (NowTiles.gameObject.transform.eulerAngles.z % 90 == 0 || 
-            NowTiles.gameObject.transform.eulerAngles.z % 90 <= 1.1))
-        {
-            NowTiles.gameObject.transform.DORotateQuaternion(Quaternion.Euler(0, 0, NowTiles.gameObject.transform.eulerAngles.z + 90), 1);
-        }
+        NowTiles.gameObject.transform.DORotateQuaternion
+                (Quaternion.Euler(0, 0, NowTiles.gameObject.transform.eulerAngles.z + 90), 1);
+        yield return new WaitForSecondsRealtime(1.1f);
+        stageClear.Clear();
+        yield break;
     }
 
     private void ChangeNowTile(int Horizontal, int Vertical)

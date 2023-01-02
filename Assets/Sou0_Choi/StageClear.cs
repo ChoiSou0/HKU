@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Clear
@@ -24,23 +25,23 @@ public class StageClear : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        Clear();
+        
     }
 
-    protected void Clear()
+    public void Clear()
     {
+        Complete = 0;
+
         for (int i = 0; i < ClearList.Count; i++)
         {
-            if (ClearList[i].ClearTile.gameObject.transform.rotation.z == ClearList[i].ClearRotation)
+            if (ClearList[i].ClearTile.gameObject.transform.eulerAngles.z == ClearList[i].ClearRotation)
             {
                 Complete++;
+                
             }
-            else
-            {
-                if (Complete > 0)
-                    Complete--;
-            }
+
         }
+        Debug.Log(Complete);
 
         if (Complete == MaxComplete)
             Debug.Log("Clear");
