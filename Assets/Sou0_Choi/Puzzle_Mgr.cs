@@ -67,8 +67,8 @@ public class Puzzle_Mgr : MonoBehaviour
     IEnumerator TurnTile()
     {
         NowTiles.gameObject.transform.DORotateQuaternion
-                (Quaternion.Euler(0, 0, NowTiles.gameObject.transform.eulerAngles.z + 90), 1);
-        yield return new WaitForSecondsRealtime(1.1f);
+                (Quaternion.Euler(0, 0, NowTiles.gameObject.transform.eulerAngles.z + 90), 0.5f);
+        yield return new WaitForSecondsRealtime(0.6f);
         stageClear.Clear();
         yield break;
     }

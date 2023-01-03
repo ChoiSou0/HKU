@@ -15,6 +15,7 @@ public class StageClear : MonoBehaviour
     [SerializeField] private List<Clear> ClearList = new List<Clear>();
     [SerializeField] private int MaxComplete;
     [SerializeField] private int Complete;
+    [SerializeField] private string CompleteSceneName;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,6 @@ public class StageClear : MonoBehaviour
         Debug.Log(Complete);
 
         if (Complete == MaxComplete)
-            Debug.Log("Clear");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(CompleteSceneName);
     }
 }
