@@ -53,8 +53,8 @@ public class Teacher_CS : MonoBehaviour
 
     void Cast()
     {
-        Debug.DrawRay(transform.position, transform.right * 10, Color.red);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, 20, LayerMask.GetMask("Robbing_Student"));
+        Debug.DrawRay(transform.position, transform.right * -10, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, -10, LayerMask.GetMask("Robbing_Student"));
 
         // 충돌한 물체가 학생일 때 실행
         if (hit.collider != null) hit.collider.gameObject.GetComponent<Robbing_Student_CS>().Caught_Check();
@@ -71,7 +71,7 @@ public class Teacher_CS : MonoBehaviour
         for (int i = 0; i < Warning_Times * 2; i++, Active = !Active)
         {
             Warning_Obj.SetActive(Active);
-            yield return new WaitForSeconds(Warning_sec);
+            yield return new WaitForSeconds( (Warning_sec / Warning_Times) * 0.5f );
         }
 
         // 선생님 회전 <-0
@@ -79,7 +79,7 @@ public class Teacher_CS : MonoBehaviour
         On_Cast = true;
 
         // 경고 깜빡이는 시간 보정이 들어간 것임
-        yield return new WaitForSeconds(See_Time + Warning_sec * (Warning_Times * 2));
+        yield return new WaitForSeconds(See_Time + ((Warning_sec / Warning_Times) * 0.5f));
 
         // 선생님 회전 0->
         transform.localEulerAngles = new Vector2(0, 0);

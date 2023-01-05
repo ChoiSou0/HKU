@@ -8,17 +8,23 @@ public class Robbing_Student_CS : MonoBehaviour
     bool is_Space = false; // 스페이스가 눌려있는지 여부
     float NowInterval; // 현재 허용 간격
 
-    void Start()
+
+    Animator anim;
+    void Awake()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
         // 키보드 입력 간격 0.2초까지 허용
-        if (Input.GetKeyDown(KeyCode.Space)) { NowInterval = 0.2f; RS_Manager.RSM.Space_Count++; }
+        if (Input.GetKeyDown(KeyCode.Space)) { 
+            NowInterval = 0.2f; 
+            RS_Manager.RSM.Space_Count++;
+            anim.SetBool("Robbing",true); 
+        }
 
-        if (NowInterval <= 0) is_Space = false;
+        if (NowInterval <= 0) { is_Space = false; anim.SetBool("Robbing", false); }
         else { is_Space = true; NowInterval -= Time.deltaTime; }
 
     }
