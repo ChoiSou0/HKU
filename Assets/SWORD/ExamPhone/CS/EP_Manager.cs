@@ -8,31 +8,38 @@ public class EP_Manager : MonoBehaviour
 {
     public enum Setting
     {
-        Key_Image,
-        Change_Image,
+        Set_Object,
         UI,
         Develop
     };
 
     public Setting setting;
 
-    //================< Key_Image >================
-    public Image[] Key_Image;       // 키 이미지가 들어갈 빈 이미지
+    //================< Set_Object >================
+    public GameObject Instan_Pos;       // 키 생성할 위치
+    public GameObject[] Set_Object;     // 키 오브젝트
+
+    //================< Key_Object >================
+    GameObject[] Key_Object = new GameObject[5];     // 키 오브젝트
 
     //================< Change_Image >================
     // 0 : 위 / 1 : 아래 / 2 : 왼쪽 / 3 : 오른쪽
-    public Sprite[] Change_Image;    // 방향키 이미지
+    //public Sprite[] Change_Image;    // 방향키 이미지
     private int[] Key_Range = new int[5];
 
     //================< UI >================
     public TextMeshProUGUI Score_TMP;   // 현재 점수 표기
     public TextMeshProUGUI Time_TMP;    // 현재 점수 표기
-    public float PlayTime;          // 플레이 타임
+    public float PlayTime;              // 플레이 타임
 
     //================< Develop >================
     public int NowKeyValue = 0; // 현재 이미지 위치 ■ □ □ □ 
     public int ScoreCount = 0;  // 점수
 
+    void Awake()
+    {
+        //Instan_Pos = GameObject.Find("Border");
+    }
     void Start()
     {
         Random_Setting();
@@ -48,12 +55,22 @@ public class EP_Manager : MonoBehaviour
     {
         NowKeyValue = 0; // 현재 위치값 초기화
 
-        for (int i = 0; i < Key_Image.Length; i++)
+        for (int i = 0; i < Key_Object.Length; i++)
             Key_Range[i] = Random.Range(0, 4);
 
-        for (int i = 0; i < Key_Image.Length; i++)
-            Key_Image[i].sprite = Change_Image[Key_Range[i]];
+        for (int i = 0; i < 5; i++)
+        {
+            Key_Object[i] = Instantiate(Set_Object[ Key_Range[i] ], Instan_Pos.transform.position, Quaternion.identity);
+            Key_Object[i].transform.SetParent(Instan_Pos.transform);
+        }
     }
+
+    void Object_Destroy()
+    {
+        for (int i = 0; i < Key_Object.Length; i++) Destroy(Key_Object[i]);
+        Random_Setting();
+    }
+
     void Input_Check()
     {
         int InputKeyValue = 100;
@@ -69,30 +86,27 @@ public class EP_Manager : MonoBehaviour
         // 성공 시 반환
         if (Key_Range[NowKeyValue] == InputKeyValue)
         {
-            // NowKeyValue가 4를 넘었다면 5개를 모두 맞춘 것이므로 키 배치 새로 불러오기
-            if ( NowKeyValue >= 4 ) { Random_Setting(); ScoreCount++; }
+            Key_Object[NowKeyValue].GetComponent<Key_Object>().Call_Change_Sprite();
+            Debug.Log("성공"); NowKeyValue++;
 
-            // 아닐 시 위치값을 1 추가하고 반환
-            else { Debug.Log("성공"); NowKeyValue++; return; }
+            // NowKeyValue가 4를 넘었다면 5개를 모두 맞춘 것이므로 키 배치 새로 불러오기
+            if ( NowKeyValue > 4 ) { Invoke("Object_Destroy", 0.2f); ScoreCount++; }
         }
 
         else
         {
             // 실패 시 키 배치 새로 불러오기
             Debug.Log("실패");
-            Random_Setting();
+            Object_Destroy();
         }
     }
 
-
     void UI_Setting()
     {
+        // 점수 UI
         Score_TMP.text = "Score : " + ScoreCount;
-        Time_Count();
 
-    }
-    void Time_Count()
-    {
+        // 시간 UI
         PlayTime -= Time.deltaTime * 1;
         if ((int)PlayTime % 60 >= 10) { Time_TMP.text = ((int)PlayTime / 60).ToString() + " : " + ((int)PlayTime % 60).ToString(); }
         else Time_TMP.text = ((int)PlayTime / 60).ToString() + " : 0" + ((int)PlayTime % 60).ToString();

@@ -12,10 +12,8 @@ public class EP_ManagerEditor : Editor
     SerializedProperty Setting_Prop;
 
     //================< Key_Image >================
-    SerializedProperty Key_Image_Prop;
-
-    //================< Change_Image >================
-    SerializedProperty Change_Image_Prop;
+    SerializedProperty Instan_Pos_Prop;
+    SerializedProperty Set_Object_Prop;
 
     //================< UI >================
     SerializedProperty Score_Prop;
@@ -34,8 +32,8 @@ public class EP_ManagerEditor : Editor
     private void Awake()
     {
         Setting_Prop = serializedObject.FindProperty("setting");
-        Key_Image_Prop = serializedObject.FindProperty("Key_Image");
-        Change_Image_Prop = serializedObject.FindProperty("Change_Image");
+        Instan_Pos_Prop = serializedObject.FindProperty("Instan_Pos");
+        Set_Object_Prop = serializedObject.FindProperty("Set_Object");
         NowKeyValue_Prop = serializedObject.FindProperty("NowKeyValue");
         Score_Prop = serializedObject.FindProperty("Score_TMP");
         Time_Prop = serializedObject.FindProperty("Time_TMP");
@@ -46,11 +44,11 @@ public class EP_ManagerEditor : Editor
     {
         EditorGUILayout.PropertyField(Setting_Prop);
 
-        if ((EP_Manager.Setting)Setting_Prop.enumValueIndex == EP_Manager.Setting.Key_Image)
-            EditorGUILayout.PropertyField(Key_Image_Prop);
-
-        if((EP_Manager.Setting)Setting_Prop.enumValueIndex == EP_Manager.Setting.Change_Image)
-            EditorGUILayout.PropertyField(Change_Image_Prop);
+        if ((EP_Manager.Setting)Setting_Prop.enumValueIndex == EP_Manager.Setting.Set_Object)
+        {
+            EditorGUILayout.PropertyField(Instan_Pos_Prop);
+            EditorGUILayout.PropertyField(Set_Object_Prop);
+        }
 
         if ((EP_Manager.Setting)Setting_Prop.enumValueIndex == EP_Manager.Setting.UI)
         {
