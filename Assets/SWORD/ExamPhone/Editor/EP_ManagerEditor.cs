@@ -6,14 +6,14 @@ using UnityEditor;
 [CustomEditor(typeof(EP_Manager))]
 public class EP_ManagerEditor : Editor
 {
-    EP_Manager EPM;
-
     // 시작 열거형
     SerializedProperty Setting_Prop;
 
     //================< Key_Image >================
     SerializedProperty Instan_Pos_Prop;
     SerializedProperty Set_Object_Prop;
+    SerializedProperty Great_Prop;
+    SerializedProperty Miss_Prop;
 
     //================< UI >================
     SerializedProperty Score_Prop;
@@ -23,21 +23,20 @@ public class EP_ManagerEditor : Editor
     //================< Develop >================
     SerializedProperty NowKeyValue_Prop;
 
-
-    private void OnEnable()
-    {
-        EPM = target as EP_Manager;
-    }
-
     private void Awake()
     {
         Setting_Prop = serializedObject.FindProperty("setting");
+
         Instan_Pos_Prop = serializedObject.FindProperty("Instan_Pos");
         Set_Object_Prop = serializedObject.FindProperty("Set_Object");
-        NowKeyValue_Prop = serializedObject.FindProperty("NowKeyValue");
+        Great_Prop = serializedObject.FindProperty("Great");
+        Miss_Prop = serializedObject.FindProperty("Miss");
+
         Score_Prop = serializedObject.FindProperty("Score_TMP");
         Time_Prop = serializedObject.FindProperty("Time_TMP");
         PlayTime_Prop = serializedObject.FindProperty("PlayTime");
+
+        NowKeyValue_Prop = serializedObject.FindProperty("NowKeyValue");
     }
 
     public override void OnInspectorGUI()
@@ -48,6 +47,8 @@ public class EP_ManagerEditor : Editor
         {
             EditorGUILayout.PropertyField(Instan_Pos_Prop);
             EditorGUILayout.PropertyField(Set_Object_Prop);
+            EditorGUILayout.PropertyField(Great_Prop);
+            EditorGUILayout.PropertyField(Miss_Prop);
         }
 
         if ((EP_Manager.Setting)Setting_Prop.enumValueIndex == EP_Manager.Setting.UI)
