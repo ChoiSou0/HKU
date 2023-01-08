@@ -12,6 +12,13 @@ public class Ending_Mgr : MonoBehaviour
     [SerializeField] private Text ScoreText;
     [SerializeField] private Image EndingImage;
 
+    [SerializeField] private Image ReStartButton;
+    [SerializeField] private Sprite ReStartOn;
+    [SerializeField] private Sprite ReStartOff;
+    [SerializeField] private Image ExitButton;
+    [SerializeField] private Sprite ExitOn;
+    [SerializeField] private Sprite ExitOff;
+
     private void Start()
     {
         StartCoroutine(SetSetting());
@@ -57,6 +64,26 @@ public class Ending_Mgr : MonoBehaviour
         }
 
         yield break;
+    }
+
+    public void OnMouseReStart()
+    {
+        ReStartButton.sprite = ReStartOn;
+    }
+
+    public void OffMouseReStart()
+    {
+        ReStartButton.sprite = ReStartOff;
+    }
+
+    public void onMouseExit()
+    {
+        ExitButton.sprite = ExitOn;
+    }
+
+    public void OffMouseExit()
+    {
+        ExitButton.sprite = ExitOff;
     }
 
     public void ClickReStart()
