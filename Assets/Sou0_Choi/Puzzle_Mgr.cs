@@ -6,8 +6,6 @@ using DG.Tweening;
 public class Puzzle_Mgr : MonoBehaviour
 {
     private StageClear stageClear;
-    [SerializeField] private float MaxTime;
-    [SerializeField] private float Time;
     public List<Tile> EntireTiles = new List<Tile>();
     public Tile NowTiles;
     [SerializeField] private int HorziontalMax;
