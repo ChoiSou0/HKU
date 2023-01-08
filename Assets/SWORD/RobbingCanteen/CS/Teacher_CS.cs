@@ -46,9 +46,12 @@ public class Teacher_CS : MonoBehaviour
 
     void Update()
     {
-        if (On_Cast) Cast(); // 회전 상태일 때만 레이 쏘기
+        if (RS_Manager.RSM.TimeOn)
+        {
+            if (On_Cast) Cast(); // 회전 상태일 때만 레이 쏘기
 
-        if (IsRight) StartCoroutine(Trun_Teacher());
+            if (IsRight) StartCoroutine(Trun_Teacher());
+        }
     }
 
     void Cast()

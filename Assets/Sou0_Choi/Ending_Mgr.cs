@@ -32,6 +32,14 @@ public class Ending_Mgr : MonoBehaviour
             case "Hacking":
                 ScoreText.DOText("남은 시간 : " + Mathf.Ceil(Ending.Score) + "초", 0.5f).SetEase(Ease.OutQuad);
                 break;
+
+            case "ExamPhone":
+                ScoreText.DOText("성공 횟수 : " + Mathf.Ceil(Ending.Score) + "회", 0.5f).SetEase(Ease.OutQuad);
+                break;
+
+            case "RobbingCanteen":
+                ScoreText.DOText("누른 횟수  : " + Mathf.Ceil(Ending.Score) + "번", 0.5f).SetEase(Ease.OutQuad);
+                break;
         }
 
         yield break;

@@ -19,16 +19,23 @@ public class Robbing_Student_CS : MonoBehaviour
 
     void Update()
     {
-        // 키보드 입력 간격 0.2초까지 허용
-        if (Input.GetKeyDown(KeyCode.Space)) { 
-            NowInterval = 0.2f;     // 키 입력 허용 범위 지정
-            RS_Manager.RSM.Space_Count++; // 스페이스바 카운트 1 추가
-            Intan_txt(); // 아이템 텍스트 띄우기
-            anim.SetBool("Robbing",true); // 물건 터는 애니메이션 실행
-        }
+        if(RS_Manager.RSM.Game_State != 'R') anim.SetBool("Robbing", false);
 
-        if (NowInterval <= 0) { is_Space = false; anim.SetBool("Robbing", false); }
-        else { is_Space = true; NowInterval -= Time.deltaTime; }
+        // 게임이 시작된 상태 + 게임 진행중
+        if (RS_Manager.RSM.TimeOn && RS_Manager.RSM.Game_State == 'R')
+        {
+            // 키보드 입력 간격 0.2초까지 허용
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                NowInterval = 0.2f;     // 키 입력 허용 범위 지정
+                RS_Manager.RSM.Space_Count++; // 스페이스바 카운트 1 추가
+                Intan_txt(); // 아이템 텍스트 띄우기
+                anim.SetBool("Robbing", true); // 물건 터는 애니메이션 실행
+            }
+
+            if (NowInterval <= 0) { is_Space = false; anim.SetBool("Robbing", false); }
+            else { is_Space = true; NowInterval -= Time.deltaTime; }
+        }
     }
 
     void Intan_txt()
