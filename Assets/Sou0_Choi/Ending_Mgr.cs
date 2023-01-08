@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class Ending_Mgr : MonoBehaviour
 {
+    [SerializeField] private List<Sprite> EndingImageList = new List<Sprite>();
     [SerializeField] private Text GameResultText;
     [SerializeField] private Text ScoreText;
     [SerializeField] private Image EndingImage;
@@ -20,11 +21,24 @@ public class Ending_Mgr : MonoBehaviour
     {
         GameResultText.text = "";
         ScoreText.text = "";
-
+        
         if (Ending.isClear)
+        {
             GameResultText.DOText("클리어!", 0.5f).SetEase(Ease.OutQuad);
+            switch (Ending.GameName)
+            {
+
+            }
+        }
         else
+        {
             GameResultText.DOText("게임오버!", 0.5f).SetEase(Ease.OutQuad);
+            switch (Ending.GameName)
+            {
+
+            }
+        }
+        
         yield return new WaitForSecondsRealtime(0.5f);
 
         switch (Ending.GameName)

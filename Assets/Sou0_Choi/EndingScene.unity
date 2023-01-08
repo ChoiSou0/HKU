@@ -182,7 +182,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 89a53971d23390849a6ae0e531836dc2, type: 3}
     m_FontSize: 50
     m_FontStyle: 3
     m_BestFit: 0
@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83bfaab63f88074d83c0372338d55e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EndingImageList: []
   GameResultText: {fileID: 1850262757}
   ScoreText: {fileID: 1186759662}
   EndingImage: {fileID: 673767803}
@@ -377,7 +378,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 89a53971d23390849a6ae0e531836dc2, type: 3}
     m_FontSize: 50
     m_FontStyle: 3
     m_BestFit: 0
@@ -647,7 +648,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 89a53971d23390849a6ae0e531836dc2, type: 3}
     m_FontSize: 70
     m_FontStyle: 3
     m_BestFit: 0
@@ -1252,7 +1253,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 89a53971d23390849a6ae0e531836dc2, type: 3}
     m_FontSize: 100
     m_FontStyle: 3
     m_BestFit: 0
