@@ -18,6 +18,7 @@ public class Title : MonoBehaviour
 
 	void Start()
 	{
+		rect.transform.position = new Vector3(0, 2, 0);
 		StartCoroutine(DoDongShil());
 	}
 
@@ -56,7 +57,7 @@ public class Title : MonoBehaviour
 
 	IEnumerator DoDongShil()
 	{
-		while(true)
+		while (true)
 		{
 			if (BB) rect.transform.DOMoveY(2f, 1);
 			else rect.transform.DOMoveY(3f, 1);
