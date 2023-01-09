@@ -42,7 +42,7 @@ public class BreakPlayer : MonoBehaviour
 					this.transform.GetChild(0).gameObject.SetActive(false);
 				}
 			}
-			yield return new WaitForSeconds(0.05f);
+			yield return null;
 		}
 	}
 }
