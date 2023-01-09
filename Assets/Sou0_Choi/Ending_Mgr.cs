@@ -7,95 +7,113 @@ using DG.Tweening;
 
 public class Ending_Mgr : MonoBehaviour
 {
-	[SerializeField] private List<Sprite> EndingImageList = new List<Sprite>();
-	[SerializeField] private Text GameResultText;
-	[SerializeField] private Text ScoreText;
-	[SerializeField] private Image EndingImage;
+    [SerializeField] private List<Sprite> EndingImageList = new List<Sprite>();
+    [SerializeField] private Text GameResultText;
+    [SerializeField] private Text ScoreText;
+    [SerializeField] private Image EndingImage;
 
-	private void Start()
-	{
-		StartCoroutine(SetSetting());
-	}
+    [SerializeField] private Image ReStartButton;
+    [SerializeField] private Sprite ReStartOn;
+    [SerializeField] private Sprite ReStartOff;
+    [SerializeField] private Image ExitButton;
+    [SerializeField] private Sprite ExitOn;
+    [SerializeField] private Sprite ExitOff;
 
-	private IEnumerator SetSetting()
-	{
-		GameResultText.text = "";
-		ScoreText.text = "";
+    private void Start()
+    {
+        StartCoroutine(SetSetting());
+    }
 
-		if (Ending.isClear)
-		{
-			GameResultText.DOText("ÌÅ¥Î¶¨Ïñ¥!", 0.5f).SetEase(Ease.OutQuad);
-			switch (Ending.GameName)
-			{
+    private IEnumerator SetSetting()
+    {
+        GameResultText.text = "";
+        ScoreText.text = "";
+        
+        if (Ending.isClear)
+        {
+            GameResultText.DOText("≈¨∏ÆæÓ!", 0.5f).SetEase(Ease.OutQuad);
+            switch (Ending.GameName)
+            {
 
-			}
-		}
-		else
-		{
-			GameResultText.DOText("Í≤åÏûÑÏò§Î≤Ñ!", 0.5f).SetEase(Ease.OutQuad);
-			switch (Ending.GameName)
-			{
+            }
+        }
+        else
+        {
+            GameResultText.DOText("∞‘¿”ø¿πˆ!", 0.5f).SetEase(Ease.OutQuad);
+            switch (Ending.GameName)
+            {
 
-			}
-		}
+            }
+        }
+        
+        yield return new WaitForSecondsRealtime(0.5f);
 
-		yield return new WaitForSecondsRealtime(0.5f);
+        switch (Ending.GameName)
+        {
+            case "Hacking":
+                ScoreText.DOText("≥≤¿∫ Ω√∞£ : " + Mathf.Ceil(Ending.Score) + "√ ", 0.5f).SetEase(Ease.OutQuad);
+                break;
 
-		switch (Ending.GameName)
-		{
-			case "Hacking":
-				ScoreText.DOText("ÎÇ®ÏùÄ ÏãúÍ∞Ñ : " + Mathf.Ceil(Ending.Score) + "Ï¥à", 0.5f).SetEase(Ease.OutQuad);
-				break;
+            case "ExamPhone":
+                ScoreText.DOText("º∫∞¯ »Ωºˆ : " + Mathf.Ceil(Ending.Score) + "»∏", 0.5f).SetEase(Ease.OutQuad);
+                break;
 
-			case "ExamPhone":
-				ScoreText.DOText("ÏÑ±Í≥µ ÌöüÏàò : " + Mathf.Ceil(Ending.Score) + "Ìöå", 0.5f).SetEase(Ease.OutQuad);
-				break;
+            case "RobbingCanteen":
+                ScoreText.DOText("¥©∏• »Ωºˆ  : " + Mathf.Ceil(Ending.Score) + "π¯", 0.5f).SetEase(Ease.OutQuad);
+                break;
+        }
 
-			case "RobbingCanteen":
-				ScoreText.DOText("ÎàÑÎ•∏ ÌöüÏàò  : " + Mathf.Ceil(Ending.Score) + "Î≤à", 0.5f).SetEase(Ease.OutQuad);
-				break;
+        yield break;
+    }
 
-			case "Run":
-				ScoreText.DOText("Îã¨Î¶∞ ÏãúÍ∞Ñ  : " + Mathf.Ceil(Ending.Score) + "Ï¥à", 0.5f).SetEase(Ease.OutQuad);
-				break;
+    public void OnMouseReStart()
+    {
+        ReStartButton.sprite = ReStartOn;
+    }
 
-			case "Break":
-				ScoreText.DOText("Î∂ÄÏàú ÌöüÏàò  : " + Mathf.Ceil(Ending.Score) + "Î≤à", 0.5f).SetEase(Ease.OutQuad);
-				break;
-		}
+    public void OffMouseReStart()
+    {
+        ReStartButton.sprite = ReStartOff;
+    }
 
-		yield break;
-	}
+    public void onMouseExit()
+    {
+        ExitButton.sprite = ExitOn;
+    }
 
-	public void ClickReStart()
-	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene(Ending.GameName);
-	}
+    public void OffMouseExit()
+    {
+        ExitButton.sprite = ExitOff;
+    }
 
-	public void ClickExit()
-	{
-		Debug.Log("ÎÇòÍ∞ÄÍ∏∞");
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
-	}
+    public void ClickReStart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(Ending.GameName);
+    }
+
+    public void ClickExit()
+    {
+        Debug.Log("≥™∞°±‚");
+    }
 
 }
 
 namespace EndingTool
 {
-	public class Ending : MonoBehaviour
-	{
-		public static string GameName;
-		public static float Score;
-		public static bool isClear;
+    public class Ending : MonoBehaviour
+    {
+        public static string GameName;
+        public static float Score;
+        public static bool isClear;
 
-		public static IEnumerator GoEnding(string gn, float s, bool c, Image Fade)
-		{
-			GameName = gn;
-			Score = s;
-			isClear = c;
-			Fade.DOFade(1, 2).SetEase(Ease.OutQuad);
-			yield return new WaitForSecondsRealtime(2);
-			UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
-		}
-	}
+        public static IEnumerator GoEnding(string gn, float s, bool c, Image Fade)
+        {
+            GameName = gn;
+            Score = s;
+            isClear = c;
+            Fade.DOFade(1, 2).SetEase(Ease.OutQuad);
+            yield return new WaitForSecondsRealtime(2);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
+        }
+    }
 }
