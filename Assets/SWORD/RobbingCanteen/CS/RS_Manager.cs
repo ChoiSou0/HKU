@@ -20,13 +20,13 @@ public class RS_Manager : MonoBehaviour
 
     public Setting setting;
 
-    // ÇöÀç °ÔÀÓ »óÅÂ
-    public char Game_State = 'R'; // R : °ÔÀÓ ÁøÇàÁß , W : Å¬¸®¾î , L : °ÔÀÓ ¿À¹ö
+    // í˜„ì¬ ê²Œì„ ìƒíƒœ
+    public char Game_State = 'R'; // R : ê²Œì„ ì§„í–‰ì¤‘ , W : í´ë¦¬ì–´ , L : ê²Œì„ ì˜¤ë²„
 
 
-    public int Space_Count = 0; // ½ºÆäÀÌ½º¹Ù ´©¸¥ È½¼ö
-    public float PlayTime;  // ÇÃ·¹ÀÌ Å¸ÀÓ
-    float SetPlayTime;      // ÇÃ·¹ÀÌ Å¸ÀÓ ÀúÀå
+    public int Space_Count = 0; // ìŠ¤í˜ì´ìŠ¤ë°” ëˆ„ë¥¸ íšŸìˆ˜
+    public float PlayTime;  // í”Œë ˆì´ íƒ€ì„
+    float SetPlayTime;      // í”Œë ˆì´ íƒ€ì„ ì €ì¥
 
 
     public TextMeshProUGUI Time_Text;
@@ -34,9 +34,9 @@ public class RS_Manager : MonoBehaviour
     public TextMeshProUGUI Space_Count_Text;
 
 
-    public Image FadePanel;             // ÆäÀÌµå ÆÇ³Ú
-    public Text CountDownText;          // ÆäÀÌµå ¼ıÀÚ
-    public bool TimeOn = false;                // °ÔÀÓ ½ÃÀÛ ÆÇÁ¤
+    public Image FadePanel;             // í˜ì´ë“œ íŒë„¬
+    public Text CountDownText;          // í˜ì´ë“œ ìˆ«ì
+    public bool TimeOn = false;                // ê²Œì„ ì‹œì‘ íŒì •
 
     private void Awake()
     {
@@ -51,6 +51,8 @@ public class RS_Manager : MonoBehaviour
 
     void Update()
     {
+        if (PlayTime <= 0 && Game_State != 'W') { Game_State = 'W'; }
+
         if (TimeOn)
         {
             Time_Count();

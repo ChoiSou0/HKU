@@ -702,10 +702,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09f19729a5a4214b883960857012093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setting: 2
+  setting: 1
   Game_State: 82
   Space_Count: 0
-  PlayTime: 125
+  PlayTime: 30
   Time_Text: {fileID: 1876729034}
   Time_IMG: {fileID: 359212881}
   Space_Count_Text: {fileID: 1991282302}
