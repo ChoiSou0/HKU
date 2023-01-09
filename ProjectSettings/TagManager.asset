@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - spike
-  - floor
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -13,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Object
+  - Robbing_Student
   - 
   - 
   - 
@@ -42,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: R_BG
+    uniqueID: 443552679
+    locked: 0
+  - name: R_Ground
+    uniqueID: 3647032861
+    locked: 0
+  - name: R_Char
+    uniqueID: 2278131927
     locked: 0
