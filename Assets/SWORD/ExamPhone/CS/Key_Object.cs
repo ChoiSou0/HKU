@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Key_Object : MonoBehaviour
 {
-    Image Key_Image;            // ¿ÀºêÁ§Æ®ÀÇ ÇöÀç ÀÌ¹ÌÁö
+    Image Key_Image;            // ì˜¤ë¸Œì íŠ¸ì˜ í˜„ì¬ ì´ë¯¸ì§€
 
-    public Sprite Input_Down;   // ¹öÆ° ´­¸° ½ºÇÁ¶óÀÌÆ®
-    public Sprite Input_Up;     // ¹öÆ° ¶¼Áø ½ºÇÁ¶óÀÌÆ®
+    public Sprite Input_Down;   // ë²„íŠ¼ ëˆŒë¦° ìŠ¤í”„ë¼ì´íŠ¸
+    public Sprite Input_Up;     // ë²„íŠ¼ ë–¼ì§„ ìŠ¤í”„ë¼ì´íŠ¸
 
     void Awake()
     {
@@ -26,5 +26,5 @@ public class Key_Object : MonoBehaviour
         yield return null;
     }
 
-    public void Call_Change_Sprite() { StartCoroutine( Change_Sprite() ); }
+    public void Call_Change_Sprite() { StartCoroutine(Change_Sprite()); }
 }

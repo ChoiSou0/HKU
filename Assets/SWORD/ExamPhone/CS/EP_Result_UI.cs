@@ -6,17 +6,17 @@ using DG.Tweening;
 
 public class EP_Result_UI : MonoBehaviour
 {
-    float MoveSpeed = 300f;    // ÀÌ¹ÌÁö ÀÌµ¿ ¼Óµµ
+    float MoveSpeed = 300f;    // ì´ë¯¸ì§€ ì´ë™ ì†ë„
 
     void Start()
     {
         RectTransform rect = GetComponent<RectTransform>();
         rect.transform.position = new Vector2(Screen.width / 2, Screen.height / 2);
 
-        // ¿ÀºêÁ§Æ® À§·Î ÀÌµ¿
+        // ì˜¤ë¸Œì íŠ¸ ìœ„ë¡œ ì´ë™
         rect.transform.DOMove(new Vector3(Screen.width / 2, (Screen.height / 2) + MoveSpeed, 0), 1f).SetEase(Ease.InOutSine);
 
-        // ¿ÀºêÁ§Æ® ½ºÄÉÀÏ Á¶Á¤
+        // ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ ì¡°ì •
         rect.transform.DOScale(new Vector3(1, 1, 1), 1f);
 
         Destroy(gameObject, 1f);

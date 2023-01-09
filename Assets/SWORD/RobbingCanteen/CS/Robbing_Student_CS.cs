@@ -5,8 +5,8 @@ using UnityEngine;
 public class Robbing_Student_CS : MonoBehaviour
 {
 
-    bool is_Space = false; // ½ºÆäÀÌ½º°¡ ´­·ÁÀÖ´ÂÁö ¿©ºÎ
-    float NowInterval; // ÇöÀç Çã¿ë °£°İ
+    bool is_Space = false; // ìŠ¤í˜ì´ìŠ¤ê°€ ëˆŒë ¤ìˆëŠ”ì§€ ì—¬ë¶€
+    float NowInterval; // í˜„ì¬ í—ˆìš© ê°„ê²©
 
     [SerializeField] GameObject TextArea;
     [SerializeField] GameObject Intan_Text;
@@ -19,18 +19,18 @@ public class Robbing_Student_CS : MonoBehaviour
 
     void Update()
     {
-        if(RS_Manager.RSM.Game_State != 'R') anim.SetBool("Robbing", false);
+        if (RS_Manager.RSM.Game_State != 'R') anim.SetBool("Robbing", false);
 
-        // °ÔÀÓÀÌ ½ÃÀÛµÈ »óÅÂ + °ÔÀÓ ÁøÇàÁß
+        // ê²Œì„ì´ ì‹œì‘ëœ ìƒíƒœ + ê²Œì„ ì§„í–‰ì¤‘
         if (RS_Manager.RSM.TimeOn && RS_Manager.RSM.Game_State == 'R')
         {
-            // Å°º¸µå ÀÔ·Â °£°İ 0.2ÃÊ±îÁö Çã¿ë
+            // í‚¤ë³´ë“œ ì…ë ¥ ê°„ê²© 0.2ì´ˆê¹Œì§€ í—ˆìš©
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                NowInterval = 0.2f;     // Å° ÀÔ·Â Çã¿ë ¹üÀ§ ÁöÁ¤
-                RS_Manager.RSM.Space_Count++; // ½ºÆäÀÌ½º¹Ù Ä«¿îÆ® 1 Ãß°¡
-                Intan_txt(); // ¾ÆÀÌÅÛ ÅØ½ºÆ® ¶ç¿ì±â
-                anim.SetBool("Robbing", true); // ¹°°Ç ÅÍ´Â ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+                NowInterval = 0.2f;     // í‚¤ ì…ë ¥ í—ˆìš© ë²”ìœ„ ì§€ì •
+                RS_Manager.RSM.Space_Count++; // ìŠ¤í˜ì´ìŠ¤ë°” ì¹´ìš´íŠ¸ 1 ì¶”ê°€
+                Intan_txt(); // ì•„ì´í…œ í…ìŠ¤íŠ¸ ë„ìš°ê¸°
+                anim.SetBool("Robbing", true); // ë¬¼ê±´ í„°ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
             }
 
             if (NowInterval <= 0) { is_Space = false; anim.SetBool("Robbing", false); }
@@ -48,7 +48,7 @@ public class Robbing_Student_CS : MonoBehaviour
     {
         if (is_Space)
         {
-            Debug.Log("¹ß°¢µÊ");
+            Debug.Log("ë°œê°ë¨");
 
             RS_Manager.RSM.Game_State = 'L';
         }

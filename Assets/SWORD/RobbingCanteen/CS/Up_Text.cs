@@ -8,8 +8,8 @@ public class Up_Text : MonoBehaviour
 {
     [SerializeField] string[] text;
 
-    float MoveSpeed = 2;    // ÅØ½ºÆ® ÀÌµ¿ ¼Óµµ
-    float alphaSpeed = 2;   // ¾ËÆÄ°ª º¯È­ ¼Óµµ 
+    float MoveSpeed = 2;    // í…ìŠ¤íŠ¸ ì´ë™ ì†ë„
+    float alphaSpeed = 2;   // ì•ŒíŒŒê°’ ë³€í™” ì†ë„ 
 
     TextMeshProUGUI TMP;
     Color alpha;
@@ -23,26 +23,26 @@ public class Up_Text : MonoBehaviour
 
     void Start()
     {
-        // ÅØ½ºÆ® ³»¿ë ·£´ıÀ¸·Î ÁöÁ¤
+        // í…ìŠ¤íŠ¸ ë‚´ìš© ëœë¤ìœ¼ë¡œ ì§€ì •
         int RN = Random.Range(0, text.Length);
         TMP.text = text[RN];
 
-        // ¿ÀºêÁ§Æ® ½ºÄÉÀÏÀÌ Ä¿Áö´Â ¹®Á¦°¡ ÀÖ¾î µû·Î Á¶Á¤ÇÔ
+        // ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¼€ì¼ì´ ì»¤ì§€ëŠ” ë¬¸ì œê°€ ìˆì–´ ë”°ë¡œ ì¡°ì •í•¨
         rectTransform.localScale = new Vector3(1, 1, 1);
 
-        // ¿ÀºêÁ§Æ® À§·Î ÀÌµ¿
-        transform.DOMoveY( MoveSpeed, 3f).SetEase(Ease.OutCirc);
+        // ì˜¤ë¸Œì íŠ¸ ìœ„ë¡œ ì´ë™
+        transform.DOMoveY(MoveSpeed, 3f).SetEase(Ease.OutCirc);
 
-        // ¾Ë¹Ù°ª ÃÊ±âÈ­
+        // ì•Œë°”ê°’ ì´ˆê¸°í™”
         alpha = TMP.color;
 
-        // 3ÃÊµÚ ÆÄ±«ÇÏµµ·Ï
+        // 3ì´ˆë’¤ íŒŒê´´í•˜ë„ë¡
         Destroy(gameObject, 3f);
     }
 
     void Update()
     {
-        // ¾ËÆÄ°ª º¯°æ
+        // ì•ŒíŒŒê°’ ë³€ê²½
         alpha.a = Mathf.Lerp(alpha.a, 0, alphaSpeed * Time.deltaTime);
         TMP.color = alpha;
     }

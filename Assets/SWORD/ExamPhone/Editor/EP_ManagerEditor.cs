@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(EP_Manager))]
 public class EP_ManagerEditor : Editor
 {
-    // ½ÃÀÛ ¿­°ÅÇü
+    // ì‹œìž‘ ì—´ê±°í˜•
     SerializedProperty Setting_Prop;
 
     //================< Key_Image >================

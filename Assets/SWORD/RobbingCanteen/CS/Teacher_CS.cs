@@ -11,24 +11,24 @@ public class Teacher_CS : MonoBehaviour
         Rotate_Warning
     };
 
-    // ===========< ¼±»ı´Ô È¸Àü ¹× Å½Áö >=========
-    public float min_Time;      // ·£´ı ÃÖ¼Ò ½Ã°£
-    public float max_Time;      // ·£´ı ÃÖ´ë ½Ã°£
+    // ===========< ì„ ìƒë‹˜ íšŒì „ ë° íƒì§€ >=========
+    public float min_Time;      // ëœë¤ ìµœì†Œ ì‹œê°„
+    public float max_Time;      // ëœë¤ ìµœëŒ€ ì‹œê°„
 
-    public float Trun_Time;   // µ¹¾Æº¸´Â °£°İ
-    public float See_Time;    // º¸°íÀÖ´Â ½Ã°£
+    public float Trun_Time;   // ëŒì•„ë³´ëŠ” ê°„ê²©
+    public float See_Time;    // ë³´ê³ ìˆëŠ” ì‹œê°„
 
-    // =============< È¸Àü °æ°í °ü¸® >============
-    public int Warning_Times;   // °æ°í ¹İº¹ È½¼ö
-    public float Warning_sec;   // °æ°í º¸ÀÌ´Â ½Ã°£
+    // =============< íšŒì „ ê²½ê³  ê´€ë¦¬ >============
+    public int Warning_Times;   // ê²½ê³  ë°˜ë³µ íšŸìˆ˜
+    public float Warning_sec;   // ê²½ê³  ë³´ì´ëŠ” ì‹œê°„
 
 
-    // ³»ºÎ
+    // ë‚´ë¶€
     public Setting setting;
 
     GameObject Warning_Obj;
-    bool IsRight = true;    // ÂüÀÏ ¶§ ¿À¸¥ÂÊ
-    bool On_Cast = false;   // ÂüÀÏ ¶§ ·¹ÀÌ ¹ß»ç
+    bool IsRight = true;    // ì°¸ì¼ ë•Œ ì˜¤ë¥¸ìª½
+    bool On_Cast = false;   // ì°¸ì¼ ë•Œ ë ˆì´ ë°œì‚¬
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class Teacher_CS : MonoBehaviour
 
     void Start()
     {
-        // ¹Ù¶óº¸´Â ½Ã°£ Á¶Á¤
+        // ë°”ë¼ë³´ëŠ” ì‹œê°„ ì¡°ì •
         Trun_Time = Random.Range(min_Time, max_Time);
     }
 
@@ -48,7 +48,7 @@ public class Teacher_CS : MonoBehaviour
     {
         if (RS_Manager.RSM.TimeOn)
         {
-            if (On_Cast) Cast(); // È¸Àü »óÅÂÀÏ ¶§¸¸ ·¹ÀÌ ½î±â
+            if (On_Cast) Cast(); // íšŒì „ ìƒíƒœì¼ ë•Œë§Œ ë ˆì´ ì˜ê¸°
 
             if (IsRight) StartCoroutine(Trun_Teacher());
         }
@@ -59,10 +59,10 @@ public class Teacher_CS : MonoBehaviour
         Debug.DrawRay(transform.position, transform.right * -10, Color.red);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, -10, LayerMask.GetMask("Robbing_Student"));
 
-        // Ãæµ¹ÇÑ ¹°Ã¼°¡ ÇĞ»ıÀÏ ¶§ ½ÇÇà
+        // ì¶©ëŒí•œ ë¬¼ì²´ê°€ í•™ìƒì¼ ë•Œ ì‹¤í–‰
         if (hit.collider != null) hit.collider.gameObject.GetComponent<Robbing_Student_CS>().Caught_Check();
     }
-    
+
     IEnumerator Trun_Teacher()
     {
         bool Active = true;
@@ -70,28 +70,28 @@ public class Teacher_CS : MonoBehaviour
 
         yield return new WaitForSeconds(Trun_Time);
 
-        // Á¤ÇØÁø È½¼ö¸¸Å­ °æ°í ¹İº¹
+        // ì •í•´ì§„ íšŸìˆ˜ë§Œí¼ ê²½ê³  ë°˜ë³µ
         for (int i = 0; i < Warning_Times * 2; i++, Active = !Active)
         {
             Warning_Obj.SetActive(Active);
-            yield return new WaitForSeconds( (Warning_sec / Warning_Times) * 0.5f );
+            yield return new WaitForSeconds((Warning_sec / Warning_Times) * 0.5f);
         }
 
-        // ¼±»ı´Ô È¸Àü <-0
+        // ì„ ìƒë‹˜ íšŒì „ <-0
         transform.localEulerAngles = new Vector2(0, 180);
         On_Cast = true;
 
-        // °æ°í ±ôºıÀÌ´Â ½Ã°£ º¸Á¤ÀÌ µé¾î°£ °ÍÀÓ
+        // ê²½ê³  ê¹œë¹¡ì´ëŠ” ì‹œê°„ ë³´ì •ì´ ë“¤ì–´ê°„ ê²ƒì„
         yield return new WaitForSeconds(See_Time + ((Warning_sec / Warning_Times) * 0.5f));
 
-        // ¼±»ı´Ô È¸Àü 0->
+        // ì„ ìƒë‹˜ íšŒì „ 0->
         transform.localEulerAngles = new Vector2(0, 0);
 
-        // ¹Ù¶óº¸´Â ½Ã°£ Á¶Á¤
+        // ë°”ë¼ë³´ëŠ” ì‹œê°„ ì¡°ì •
         Trun_Time = Random.Range(min_Time, max_Time);
 
         IsRight = true;
         On_Cast = false;
         yield return null;
-    }   // È¸Àü °æ°í + È¸Àü
+    }   // íšŒì „ ê²½ê³  + íšŒì „
 }

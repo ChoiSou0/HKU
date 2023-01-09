@@ -18,35 +18,35 @@ public class EP_Manager : MonoBehaviour
     public Setting setting;
 
     //================< Set_Object >================
-    public GameObject Instan_Pos;       // Å° »ı¼ºÇÒ À§Ä¡
-    public GameObject Reslut_Pos;       // Å° °á°ú »ı¼º À§Ä¡
-    public GameObject[] Set_Object;     // Å° ¿ÀºêÁ§Æ®
-    public GameObject Great;    // ¼º°ø ½Ã ³ªÅ¸³ª´Â ÀÌ¹ÌÁö
-    public GameObject Miss;     // ½ÇÆĞ ½Ã ³ªÅ¸³ª´Â ÀÌ¹ÌÁö
+    public GameObject Instan_Pos;       // í‚¤ ìƒì„±í•  ìœ„ì¹˜
+    public GameObject Reslut_Pos;       // í‚¤ ê²°ê³¼ ìƒì„± ìœ„ì¹˜
+    public GameObject[] Set_Object;     // í‚¤ ì˜¤ë¸Œì íŠ¸
+    public GameObject Great;    // ì„±ê³µ ì‹œ ë‚˜íƒ€ë‚˜ëŠ” ì´ë¯¸ì§€
+    public GameObject Miss;     // ì‹¤íŒ¨ ì‹œ ë‚˜íƒ€ë‚˜ëŠ” ì´ë¯¸ì§€
     //================< Key_Object >================
-    GameObject[] Key_Object = new GameObject[5];     // Å° ¿ÀºêÁ§Æ®
+    GameObject[] Key_Object = new GameObject[5];     // í‚¤ ì˜¤ë¸Œì íŠ¸
 
     //================< Change_Image >================
-    // 0 : À§ / 1 : ¾Æ·¡ / 2 : ¿ŞÂÊ / 3 : ¿À¸¥ÂÊ
-    int[] Key_Range = new int[5]; // Ä«µå¸¦ ÁöÁ¤ÇÏ´Â ·£´ı°ª ¹è¿­
+    // 0 : ìœ„ / 1 : ì•„ë˜ / 2 : ì™¼ìª½ / 3 : ì˜¤ë¥¸ìª½
+    int[] Key_Range = new int[5]; // ì¹´ë“œë¥¼ ì§€ì •í•˜ëŠ” ëœë¤ê°’ ë°°ì—´
 
     //================< UI >================
-    public TextMeshProUGUI Score_TMP;   // ÇöÀç Á¡¼ö Ç¥±â
-    public TextMeshProUGUI Time_TMP;    // ÇöÀç ½Ã°£ Ç¥±â ÅØ½ºÆ®
-    public Image Time_IMG;              // ÇöÀç ½Ã°£ Ç¥±â ÀÌ¹ÌÁö
-    public float PlayTime;              // ÇÃ·¹ÀÌ Å¸ÀÓ
-    public float SetPlayTime;           // ÇÃ·¹ÀÌ Å¸ÀÓ ÀúÀå
+    public TextMeshProUGUI Score_TMP;   // í˜„ì¬ ì ìˆ˜ í‘œê¸°
+    public TextMeshProUGUI Time_TMP;    // í˜„ì¬ ì‹œê°„ í‘œê¸° í…ìŠ¤íŠ¸
+    public Image Time_IMG;              // í˜„ì¬ ì‹œê°„ í‘œê¸° ì´ë¯¸ì§€
+    public float PlayTime;              // í”Œë ˆì´ íƒ€ì„
+    public float SetPlayTime;           // í”Œë ˆì´ íƒ€ì„ ì €ì¥
 
-    public Image FadePanel;             // ÆäÀÌµå ÆÇ³Ú
-    public Text CountDownText;          // ÆäÀÌµå ¼ıÀÚ
-    bool TimeOn = false;                // °ÔÀÓ ½ÃÀÛ ÆÇÁ¤
+    public Image FadePanel;             // í˜ì´ë“œ íŒë„¬
+    public Text CountDownText;          // í˜ì´ë“œ ìˆ«ì
+    bool TimeOn = false;                // ê²Œì„ ì‹œì‘ íŒì •
 
     //================< Develop >================
-    public int NowKeyValue = 0; // ÇöÀç ÀÌ¹ÌÁö À§Ä¡ ¡á ¡à ¡à ¡à 
-    public int ScoreCount = 0;  // Á¡¼ö
-    public bool Is_Over = false; // °ÔÀÓ ¿À¹ö È®ÀÎ
+    public int NowKeyValue = 0; // í˜„ì¬ ì´ë¯¸ì§€ ìœ„ì¹˜ â–  â–¡ â–¡ â–¡ 
+    public int ScoreCount = 0;  // ì ìˆ˜
+    public bool Is_Over = false; // ê²Œì„ ì˜¤ë²„ í™•ì¸
 
-    Animator P_Anim; // ÇÃ·¹ÀÌ¾î ¾Ö´Ï¸ŞÀÌ¼Ç
+    Animator P_Anim; // í”Œë ˆì´ì–´ ì• ë‹ˆë©”ì´ì…˜
 
     void Awake()
     {
@@ -62,7 +62,7 @@ public class EP_Manager : MonoBehaviour
 
     void Update()
     {
-        if(TimeOn && !Is_Over)
+        if (TimeOn && !Is_Over)
         {
             Input_Check();
             UI_Setting();
@@ -77,14 +77,14 @@ public class EP_Manager : MonoBehaviour
 
     void Random_Setting()
     {
-        NowKeyValue = 0; // ÇöÀç À§Ä¡°ª ÃÊ±âÈ­
+        NowKeyValue = 0; // í˜„ì¬ ìœ„ì¹˜ê°’ ì´ˆê¸°í™”
 
         for (int i = 0; i < Key_Object.Length; i++)
             Key_Range[i] = Random.Range(0, 4);
 
         for (int i = 0; i < 5; i++)
         {
-            Key_Object[i] = Instantiate(Set_Object[ Key_Range[i] ], Instan_Pos.transform.position, Quaternion.identity);
+            Key_Object[i] = Instantiate(Set_Object[Key_Range[i]], Instan_Pos.transform.position, Quaternion.identity);
             Key_Object[i].transform.SetParent(Instan_Pos.transform);
         }
     }
@@ -99,27 +99,27 @@ public class EP_Manager : MonoBehaviour
     {
         int InputKeyValue = 100;
 
-        // ¸ôÆù ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+        // ëª°í° ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
         if (Input.anyKeyDown) P_Anim.SetTrigger("ING");
 
-        if      (Input.GetKeyDown(KeyCode.UpArrow))     InputKeyValue = 0;
-        else if (Input.GetKeyDown(KeyCode.DownArrow))   InputKeyValue = 1;
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))   InputKeyValue = 2;
-        else if (Input.GetKeyDown(KeyCode.RightArrow))  InputKeyValue = 3;
+        if (Input.GetKeyDown(KeyCode.UpArrow)) InputKeyValue = 0;
+        else if (Input.GetKeyDown(KeyCode.DownArrow)) InputKeyValue = 1;
+        else if (Input.GetKeyDown(KeyCode.LeftArrow)) InputKeyValue = 2;
+        else if (Input.GetKeyDown(KeyCode.RightArrow)) InputKeyValue = 3;
 
 
-        if(InputKeyValue == 100) return;
+        if (InputKeyValue == 100) return;
 
-        // ¼º°ø ½Ã ¹İÈ¯
+        // ì„±ê³µ ì‹œ ë°˜í™˜
         if (Key_Range[NowKeyValue] == InputKeyValue)
         {
             Key_Object[NowKeyValue].GetComponent<Key_Object>().Call_Change_Sprite();
-            Debug.Log("¼º°ø"); NowKeyValue++;
+            Debug.Log("ì„±ê³µ"); NowKeyValue++;
 
-            // NowKeyValue°¡ 4¸¦ ³Ñ¾ú´Ù¸é 5°³¸¦ ¸ğµÎ ¸ÂÃá °ÍÀÌ¹Ç·Î Å° ¹èÄ¡ »õ·Î ºÒ·¯¿À±â
-            if ( NowKeyValue > 4 ) 
+            // NowKeyValueê°€ 4ë¥¼ ë„˜ì—ˆë‹¤ë©´ 5ê°œë¥¼ ëª¨ë‘ ë§ì¶˜ ê²ƒì´ë¯€ë¡œ í‚¤ ë°°ì¹˜ ìƒˆë¡œ ë¶ˆëŸ¬ì˜¤ê¸°
+            if (NowKeyValue > 4)
             {
-                P_Anim.SetTrigger("Success"); 
+                P_Anim.SetTrigger("Success");
                 ScoreCount++;
                 Invoke("Object_Destroy", 0.2f);
 
@@ -130,8 +130,8 @@ public class EP_Manager : MonoBehaviour
 
         else
         {
-            // ½ÇÆĞ ½Ã Å° ¹èÄ¡ »õ·Î ºÒ·¯¿À±â
-            Debug.Log("½ÇÆĞ");
+            // ì‹¤íŒ¨ ì‹œ í‚¤ ë°°ì¹˜ ìƒˆë¡œ ë¶ˆëŸ¬ì˜¤ê¸°
+            Debug.Log("ì‹¤íŒ¨");
 
             P_Anim.SetTrigger("Failed");
             Object_Destroy();
@@ -145,10 +145,10 @@ public class EP_Manager : MonoBehaviour
     {
         if (!Is_Over)
         {
-            // Á¡¼ö UI
+            // ì ìˆ˜ UI
             Score_TMP.text = "Score : " + ScoreCount;
 
-            // ½Ã°£ UI
+            // ì‹œê°„ UI
             PlayTime -= Time.deltaTime * 1;
             if ((int)PlayTime % 60 >= 10) { Time_TMP.text = ((int)PlayTime / 60).ToString() + " : " + ((int)PlayTime % 60).ToString(); }
             else Time_TMP.text = ((int)PlayTime / 60).ToString() + " : 0" + ((int)PlayTime % 60).ToString();

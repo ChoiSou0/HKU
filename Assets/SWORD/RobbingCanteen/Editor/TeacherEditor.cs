@@ -22,24 +22,24 @@ public class TeacherEditor : Editor
 
         EditorGUILayout.PropertyField(Setting_Prop);
 
-        if((Teacher_CS.Setting)  Setting_Prop.enumValueIndex == Teacher_CS.Setting.None)
+        if ((Teacher_CS.Setting)Setting_Prop.enumValueIndex == Teacher_CS.Setting.None)
         { }
-        if ((Teacher_CS.Setting) Setting_Prop.enumValueIndex == Teacher_CS.Setting.Rotate_Cast)
+        if ((Teacher_CS.Setting)Setting_Prop.enumValueIndex == Teacher_CS.Setting.Rotate_Cast)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("·£´ı ¹üÀ§ ( ÃÖ¼Ò / ÃÖ´ë )");
+            EditorGUILayout.PrefixLabel("ëœë¤ ë²”ìœ„ ( ìµœì†Œ / ìµœëŒ€ )");
             teacher.min_Time = EditorGUILayout.FloatField(teacher.min_Time, GUILayout.Width(100));
             teacher.max_Time = EditorGUILayout.FloatField(teacher.max_Time, GUILayout.Width(100));
             EditorGUILayout.EndHorizontal();
 
 
-            teacher.Trun_Time = EditorGUILayout.FloatField("µ¹¾Æº¸´Â °£°İ", teacher.Trun_Time);
-            teacher.See_Time  = EditorGUILayout.FloatField("º¸°íÀÖ´Â ½Ã°£", teacher.See_Time);
+            teacher.Trun_Time = EditorGUILayout.FloatField("ëŒì•„ë³´ëŠ” ê°„ê²©", teacher.Trun_Time);
+            teacher.See_Time = EditorGUILayout.FloatField("ë³´ê³ ìˆëŠ” ì‹œê°„", teacher.See_Time);
         }
-        if ((Teacher_CS.Setting) Setting_Prop.enumValueIndex == Teacher_CS.Setting.Rotate_Warning)
+        if ((Teacher_CS.Setting)Setting_Prop.enumValueIndex == Teacher_CS.Setting.Rotate_Warning)
         {
-            teacher.Warning_Times = EditorGUILayout.IntField  ("°æ°í ¹İº¹ È½¼ö", teacher.Warning_Times);
-            teacher.Warning_sec   = EditorGUILayout.FloatField("°æ°í ½Ã°£",      teacher.Warning_sec  );
+            teacher.Warning_Times = EditorGUILayout.IntField("ê²½ê³  ë°˜ë³µ íšŸìˆ˜", teacher.Warning_Times);
+            teacher.Warning_sec = EditorGUILayout.FloatField("ê²½ê³  ì‹œê°„", teacher.Warning_sec);
         }
 
         serializedObject.ApplyModifiedProperties();

@@ -43,8 +43,8 @@ public class RS_ManagerEditor : Editor
 
         if ((RS_Manager.Setting)Setting_Prop.enumValueIndex == RS_Manager.Setting.numSet)
         {
-            RSM.Space_Count = EditorGUILayout.IntField("½ºÆäÀÌ½º¹Ù ´©¸¥ È½¼ö", RSM.Space_Count);
-            RSM.PlayTime = EditorGUILayout.FloatField("ÇÃ·¹ÀÌ Å¸ÀÓ", RSM.PlayTime);
+            RSM.Space_Count = EditorGUILayout.IntField("ìŠ¤í˜ì´ìŠ¤ë°” ëˆ„ë¥¸ íšŸìˆ˜", RSM.Space_Count);
+            RSM.PlayTime = EditorGUILayout.FloatField("í”Œë ˆì´ íƒ€ì„", RSM.PlayTime);
         }
 
         if ((RS_Manager.Setting)Setting_Prop.enumValueIndex == RS_Manager.Setting.UI)
