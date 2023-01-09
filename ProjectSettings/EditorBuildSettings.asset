@@ -5,10 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Sou0_Choi/HackingScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/JungwooJi/Scenes/Title.unity
+    guid: e0f815642e5c0aa4cb1485ec5c904b56
   - enabled: 1
     path: Assets/Sou0_Choi/EndingScene.unity
     guid: 542c7fe72fa6b7e478955c2c506f5f8c
+  - enabled: 1
+    path: Assets/Sou0_Choi/HackingScene.unity
+    guid: f04410696c903a94585fe7f70885689c
+  - enabled: 1
+    path: Assets/SWORD/ExamPhone/Scene/ExamPhone.unity
+    guid: bb1ac832991915341940fe92e2fbeb61
+  - enabled: 1
+    path: Assets/SWORD/RobbingCanteen/Scene/RobbingCanteen.unity
+    guid: 7fa75c03bd7e70a4480e2435525bb9c9
+  - enabled: 1
+    path: Assets/JungwooJi/Scenes/Break.unity
+    guid: 02fd92b8001207649a262fae61ec2ab6
+  - enabled: 1
+    path: Assets/JungwooJi/Scenes/Run.unity
+    guid: 24ec0bd88ed1de3489c131e05d8b1ab5
   m_configObjects: {}
